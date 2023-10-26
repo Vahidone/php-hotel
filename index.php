@@ -55,6 +55,32 @@ $hotels = [
   <title>PHP Hotel</title>
 </head>
 <body>
-  
+
+<div class="container">
+  <h1 class="text-center mt-5 ">Hotel List</h1>
+  <table class="table text-center">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Parking</th>
+        <th>Vote</th>
+        <th>Distance to Center</th>
+      </tr>
+    </thead>
+    <tbody>
+      <?php foreach ($hotels as $hotel): ?>
+        <tr>
+          <td><?php echo $hotel['name']; ?></td>
+          <td><?php echo $hotel['description']; ?></td>
+          <td><?php echo $hotel['parking'] ? 'Yes' : 'No'; ?></td>
+          <td><?php echo $hotel['vote']; ?></td>
+          <td><?php echo $hotel['distance_to_center']; ?></td>
+        </tr>
+      <?php endforeach; ?>
+    </tbody>
+  </table>
+</div>
+
 </body>
 </html>
