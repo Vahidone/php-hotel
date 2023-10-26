@@ -76,7 +76,7 @@ if (empty($_GET)) {
   <title>PHP Hotel</title>
 </head>
 <body>
-<div class="container mt-5 p-5 ">
+<div class="container mt-5 p-5">
     <form action="" method="GET">
         <div class="mb-3 form-check">
             <input type="checkbox" class="form-check-input" id="parkingCheckbox" name="parking" value="1">
@@ -90,7 +90,7 @@ if (empty($_GET)) {
     </form>
 </div>
 
-<div class="container">
+<div class="container border border-1 ">
     <h2 class="text-center fw-bold text-primary">Lista degli hotel</h2>
     <table class="table text-center">
         <thead>
