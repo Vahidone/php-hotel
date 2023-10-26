@@ -45,23 +45,30 @@ $hotels = [
 
 <?php
 
+
+// all'invio della pagina l'elenco degli hotel rimane completo 
 $filteredHotels = $hotels;
+
+// condizione per filtrare l'array quando gli hotel hanno il parcheggio 
 
 if (isset($_GET['parking']) && $_GET['parking'] == 1) {
   $filteredHotels = array_filter($filteredHotels, function ($hotel) {
     return $hotel['parking'] == true;
   });
 }
-
+// condizione per filtrare l'array quando gli hotel NON hanno il parcheggio 
 if (isset($_GET['NoParking']) && $_GET['NoParking'] == 2) {
   $filteredHotels = array_filter($filteredHotels, function ($hotel) {
     return $hotel['parking'] == false;
   });
 }
 
+// condizione per filtrare l'array a base del voto scelto dall'utente 
+// **** viene prima acceratato che il voto sia tra 1 e 5 
+
 if (isset($_GET['vote']) && $_GET['vote'] >= 1 && $_GET['vote'] <= 5) {
   $filteredHotels = array_filter($filteredHotels, function ($hotel) {
-      return $hotel['vote'] >= $_GET['vote'];
+    return $hotel['vote'] >= $_GET['vote'];
   });
 }
 
@@ -88,22 +95,23 @@ if (empty($_GET)) {
     <!-- la sezione relativa al filter degli hotel a base del parcheggio e del voto  -->
     <div class="container mt-5 p-5">
         <form action="" method="GET">
-            <div class="mb-3 form-check">
-              <input type="checkbox" class="form-check-input" id="parkingCheckbox" name="parking" value="1">
-              <label class="form-check-label" for="parkingCheckbox">Mostra solo hotel con il parcheggio</label>
-            </div>
+          <div class="mb-3 form-check">
+            <!-- input per selezionare hotel CON il parcheggio   -->
+            <input type="checkbox" class="form-check-input" id="parkingCheckbox" name="parking" value="1">
+            <label class="form-check-label" for="parkingCheckbox">Mostra solo hotel con il parcheggio</label>
+          </div>
+          <!-- input per selezionare hotel SENZA il parcheggio   -->
+          <div class="mt-3 form-check">
+            <input type="checkbox" class="form-check-input" id="NoParkingCheckbox" name="NoParking" value="2">
+            <label class="form-check-label" for="NoParkingCheckbox">Mostra hotel senza il parcheggio</label>
+          </div>
 
-            <div class="mt-3 form-check">
-              <input type="checkbox" class="form-check-input" id="NoParkingCheckbox" name="NoParking" value="2">
-              <label class="form-check-label" for="NoParkingCheckbox">Mostra hotel senza il parcheggio</label>
-            </div>
-
-
-            <div class="mb-3 mt-4">
-              <label for="voteInput" class="form-label">Voto minimo:</label>
-              <input type="number" class="form-control" id="voteInput" name="vote" min="1" max="5">
-            </div>
-            <button type="submit" class="btn btn-success">Filtra</button>
+          <!-- input per selezionare il voto minimo  -->
+          <div class="mb-3 mt-4">
+            <label for="voteInput" class="form-label">Voto minimo:</label>
+            <input type="number" class="form-control" id="voteInput" name="vote" min="1" max="5">
+          </div>
+          <button type="submit" class="btn btn-success">Filtra</button>
         </form>
     </div>
 
