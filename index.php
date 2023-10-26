@@ -48,20 +48,26 @@ $hotels = [
 $filteredHotels = $hotels;
 
 if (isset($_GET['parking']) && $_GET['parking'] == 1) {
-    $filteredHotels = array_filter($filteredHotels, function ($hotel) {
-      return $hotel['parking'] == true;
-    });
+  $filteredHotels = array_filter($filteredHotels, function ($hotel) {
+    return $hotel['parking'] == true;
+  });
+}
+
+if (isset($_GET['NoParking']) && $_GET['NoParking'] == 2) {
+  $filteredHotels = array_filter($filteredHotels, function ($hotel) {
+    return $hotel['parking'] == false;
+  });
 }
 
 if (isset($_GET['vote']) && $_GET['vote'] >= 1 && $_GET['vote'] <= 5) {
-    $filteredHotels = array_filter($filteredHotels, function ($hotel) {
-        return $hotel['vote'] >= $_GET['vote'];
-    });
+  $filteredHotels = array_filter($filteredHotels, function ($hotel) {
+      return $hotel['vote'] >= $_GET['vote'];
+  });
 }
 
 // Se non vengono specificati parametri GET, viene mostrato l'elenco completo degli hotel
 if (empty($_GET)) {
-    $filteredHotels = $hotels;
+  $filteredHotels = $hotels;
 }
 ?>
 
@@ -86,7 +92,14 @@ if (empty($_GET)) {
               <input type="checkbox" class="form-check-input" id="parkingCheckbox" name="parking" value="1">
               <label class="form-check-label" for="parkingCheckbox">Mostra solo hotel con il parcheggio</label>
             </div>
-            <div class="mb-3">
+
+            <div class="mt-3 form-check">
+              <input type="checkbox" class="form-check-input" id="NoParkingCheckbox" name="NoParking" value="2">
+              <label class="form-check-label" for="NoParkingCheckbox">Mostra hotel senza il parcheggio</label>
+            </div>
+
+
+            <div class="mb-3 mt-4">
               <label for="voteInput" class="form-label">Voto minimo:</label>
               <input type="number" class="form-control" id="voteInput" name="vote" min="1" max="5">
             </div>
