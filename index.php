@@ -67,7 +67,7 @@ $hotels = [
 <?php
 
 
-
+$message = '';
 $filteredHotels = $hotels;
 
 // condizione per filtrare l'array quando gli hotel hanno il parcheggio 
@@ -76,12 +76,14 @@ if (isset($_GET['parking'])) {
   $filteredHotels = array_filter($filteredHotels, function ($hotel) {
     return $hotel['parking'] == true;
   });
+  $message = 'con parcheggio';
 }
 // condizione per filtrare l'array quando gli hotel NON hanno il parcheggio 
 if (isset($_GET['NoParking'])) {
   $filteredHotels = array_filter($filteredHotels, function ($hotel) {
     return $hotel['parking'] == false;
   });
+  $message = 'senza parcheggio';
 }
 
 // condizione per filtrare l'array a base del voto scelto dall'utente 
@@ -140,7 +142,7 @@ if (empty($_GET)) {
 
     <!-- tabella con i dati degli hotel  -->
     <div class="container border border-1 ">
-      <h2 class="text-center fw-bold text-primary">Lista degli hotel</h2>
+      <h2 class="text-center fw-bold text-primary">Lista degli hotel <?php echo $message ?></h2>
       <table class="table text-center">
         <thead>
           <tr>
