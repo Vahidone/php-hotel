@@ -67,7 +67,7 @@ $hotels = [
 <?php
 
 
-// all'invio della pagina l'elenco degli hotel rimane completo 
+
 $filteredHotels = $hotels;
 
 // condizione per filtrare l'array quando gli hotel hanno il parcheggio 
@@ -116,7 +116,7 @@ if (empty($_GET)) {
   <body>
     <!-- la sezione relativa al filter degli hotel a base del parcheggio e del voto  -->
     <div class="container mt-5 p-5">
-        <form action="" method="GET">
+        <form action="index.php" method="GET">
           <div class="mb-3 form-check">
             <!-- input per selezionare hotel CON il parcheggio   -->
             <input type="checkbox" class="form-check-input" id="parkingCheckbox" name="parking">
@@ -158,7 +158,7 @@ if (empty($_GET)) {
               <td><?php echo $hotel['description']; ?></td>
               <td><?php echo $hotel['parking'] ? 'SI' : 'NO'; ?></td>
               <td><?php echo $hotel['vote']; ?></td>
-              <td><?php echo $hotel['distance_to_center']; ?></td>
+              <td>km <?php echo $hotel['distance_to_center']; ?></td>
             </tr>
           <?php endforeach; ?>
         </tbody>
